@@ -9,12 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="../views/common/menubar.jsp"/>
-	
-	
-	<div style="height:400px"></div>
-	
-	
-	<jsp:include page="../views/common/footer.jsp"/>
+
 </body>
 </html>

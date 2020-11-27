@@ -23,6 +23,22 @@
 	
 	<context:component-scan base-package="com.kh.spring" />
 	
+	<!-- 
 	
+		어떤 URL로 요청시 해당 이 문서가 실행된다고 생각하면됨!!
+		
+		그 때 HadlerMapping을 통해서 어떤 url로 요청시 어떤 Controller를 실행할건지
+		알아내고 해당 Controller가 실행
+		
+		1. 그 때마다 실행시 Controller 클래스들이 빈으로 등록되어있어야함!
+		2. 어떤 url로 요청시 어떤 controller를 실행할껀지 매핑
+	
+	 -->
+	
+	
+	<!-- 
+		<beans:bean id="loginController" class="com.kh.spring.member.controller.LoginController" />
+			
+	 -->
 	
 </beans:beans>
