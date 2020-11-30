@@ -50,5 +50,10 @@
 		SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactory);
 	
 	 -->
+	
+	
+	
+	
+	
 		
 </beans>

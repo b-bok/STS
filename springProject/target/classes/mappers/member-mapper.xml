@@ -3,14 +3,78 @@
 
 
 <mapper namespace="memberMapper">
+	
+	<resultMap id="memberResultSet" type="Member">
+		
+		<result column="user_id" property="userId"/>
+		<result column="user_pwd" property="userPwd"/>
+		<result column="user_name" property="userName"/>
+		<result column="email" property="email"/>
+		<result column="gender" property="gender"/>
+		<result column="age" property="age"/>
+		<result column="phone" property="phone"/>
+		<result column="enroll_date" property="enrollDate"/>
+		<result column="modify_date" property="modifyDate"/>
+		<result column="status" property="status"/>
+	
+	
+	</resultMap>
+	
+	
+	
+
+
   
-  	<select id="loginMember" resultMap="" parameterType="Member">
+  	<select id="loginMember" resultMap="memberResultSet" parameterType="Member">
+  	
+  		select 
+		       user_id
+		     , user_pwd
+		     , user_name
+		     , email
+		     , gender
+		     , age
+		     , phone
+		     , address
+		     , enroll_date
+		     , modify_date
+		     , status
+		from member
+		where user_id = #{ userId }
+		  <!-- and user_pwd = #{ userPwd } -->
+		  and status = 'Y'
   	
   	
   	</select>
   
   
-  
+  	<insert id="insertMember" parameterType="Member">
+  	
+  		insert
+  		  into  member 
+  		                (
+  		  				 	 USER_ID
+							,USER_PWD
+							,USER_NAME
+							,EMAIL
+							,GENDER
+							,AGE
+							,PHONE
+							,ADDRESS
+  		  				)
+  		  		values 
+  		  				(
+  		  					 #{userId}
+  		  					,#{userPwd}
+  		  					,#{userName}
+  		  					,#{email}
+  		  					,#{gender}
+  		  					,#{age}
+  		  					,#{phone}
+  		  					,#{address}
+  		  				)
+  	
+  	</insert>
   
   
   

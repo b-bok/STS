@@ -182,7 +182,39 @@
 		    <artifactId>commons-dbcp</artifactId>
 		    <version>1.4</version>
 		</dependency>
-
+	
+		
+		<!-- * 추가적으로 유용한 라이브러리 (롬복)  -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.12</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		
+		<!-- 스프링 시큐리티 관련 라이브러리 들! (core, web, config) -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>5.2.0.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>5.2.0.RELEASE</version>
+		</dependency>	
+		
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>5.2.0.RELEASE</version>
+		</dependency>
+		
+		
+		
 	</dependencies>
 	
 	
