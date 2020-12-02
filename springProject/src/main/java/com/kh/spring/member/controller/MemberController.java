@@ -216,7 +216,7 @@ public class MemberController {
 	
 	
 	@RequestMapping("insert.me")
-	public String insertMember(Member m, Model model) {
+	public String insertMember(Member m, Model model, HttpSession session) {
 		
 		
 		//System.out.println(m);
@@ -245,6 +245,7 @@ public class MemberController {
 		
 		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
 		
+		session.setAttribute("alertMsg", "회원가입성공");
 		m.setUserPwd(encPwd);
 		
 		//System.out.println("암호화 후 : " + encPwd);
@@ -262,6 +263,79 @@ public class MemberController {
 		}
 		
 		
+	}
+	
+	
+	@RequestMapping("myPage.me")
+	public String myPage() {
+		// /WEB-INF/views/member/myPage.jsp
+		
+		return "member/myPage";
+		
+		
+	}
+	
+	@RequestMapping("update.me")
+	public String updateMember(Member m, Model model,HttpSession session) {
+		
+		int result = mService.updateMember(m);
+		
+		if(result>0) {
+			
+			// 세션에 담겨있던 loginUser의 Member객체 갱신된 객체로 변경!
+			
+			session.setAttribute("loginUser", mService.loginMember(m));
+			session.setAttribute("alertMsg", "성공적인 회원정보 변경!!");
+			
+			// 위의 마이페이지 불러오는 메서드 실행
+			return "redirect:myPage.me";
+			
+		}else {
+			model.addAttribute("errorMsg","회원정보 수정실패!");
+			
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("delete.me")
+	public String deleteMember(String userPwd, HttpSession session,Model model) {
+		
+		// userPwd : 비밀번호(평문)
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		String encPwd = loginUser.getUserPwd();
+		// encPwd : 비밀번호(암호문)
+		
+		if(bcryptPasswordEncoder.matches(userPwd, encPwd)) {	// 본인 맞음
+			
+			int result = mService.deleteMember(loginUser.getUserId());
+			
+			if(result>0) {// 회원 탈퇴 성공
+				
+				//session에 담긴 loginUser 삭제
+				session.removeAttribute("loginUser");
+				session.setAttribute("alertMsg","성공적인 회원탈퇴! 잘가!");
+				
+				return "redirect:/";
+				
+			}else {// 회원탈퇴 실패
+				
+				model.addAttribute("errorMsg","탈퇴 실패!!");
+				
+				return "common/errorPage";
+			}
+			
+
+		}else { // 본인 아님!
+			
+			model.addAttribute("errorMsg","비밀번호가 틀렸습니다.");
+			return "common/errorPage";
+			
+		}
+		
+
 	}
 
 }

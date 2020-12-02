@@ -8,22 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-    <style>
-        .content{
-            background-color:rgb(247, 245, 245);
-            width:80%;
-            /* height:600px; */
-            margin:auto;
-        }
-        .innerOuter{
-            border:1px solid lightgray;
-            width:80%;
-            margin:auto;
-            padding:5% 15%;
-            background:white
-        }
-    </style>
-
 </head>
 <body>
 
@@ -35,32 +19,54 @@
             <h2>마이페이지</h2>
             <br>
 
-            <form action="" method="post" onsubmit="">
+            <form action="update.me" method="post">
                 <div class="form-group">
                     <label for="userId">* ID :</label>
-                    <input type="text" class="form-control" id="userId" name="userId" value="user01" readonly><br>
+                    <input type="text" class="form-control" id="userId" name="userId" value="${ loginUser.userId }" readonly><br>
                     
                     <label for="userName">* Name :</label>
-                    <input type="text" class="form-control" id="userName" name="userName" value="홍길동" readonly><br>
+                    <input type="text" class="form-control" id="userName" name="userName" value="${ loginUser.userName }" readonly><br>
                     
                     <label for="email"> &nbsp; Email :</label>
-                    <input type="email" class="form-control" id="email" name="email" value="user01@kh.or.kr"><br>
+                    <input type="email" class="form-control" id="email" name="email" value="${ loginUser.email }"><br>
                     
                     <label for="age"> &nbsp; Age :</label>
-                    <input type="number" class="form-control" id="age" name="age" value="30"><br>
+                    <input type="number" class="form-control" id="age" name="age" value="${ loginUser.age }"><br>
                     
                     <label for="phone"> &nbsp; Phone :</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" value="01011112222"><br>
+                    <input type="tel" class="form-control" id="phone" name="phone" value="${ loginUser.phone }"><br>
                     
                     <label for="address"> &nbsp; Address :</label>
-                    <input type="text" class="form-control" id="address" name="address" value="서울 양천구"><br>
+                    <input type="text" class="form-control" id="address" name="address" value="${ loginUser.address }"><br>
                     
-                    <label for=""> &nbsp; Gender : </label> &nbsp;&nbsp;
-                    <input type="radio" name="gender" id="Male" value="M" checked>
+                    <label for=""> &nbsp; Gender : </label> &nbsp;&nbsp;      
+                    <input type="radio" name="gender" id="Male" value="M">
                     <label for="Male">남자</label> &nbsp;&nbsp;
                     <input type="radio" name="gender" id="Female" value="F">
                     <label for="Female">여자</label><br>
-                    
+         
+         		
+         			<script>
+         				$(function(){
+         					
+         					if("${loginUser.gender}" == "M") {
+         						
+         						$("#Male").attr("checked", true)
+         					}else if("${loginUser.gender}" == "F") {
+         						
+         						$("#Female").attr("checked",true)
+         					}
+         					
+         					
+         				})
+         			
+         			
+         			
+         			</script>
+         
+         
+         
+         
                 </div>
                 <br>
                 <div class="btns" align="center">
@@ -92,8 +98,8 @@
 			                        정말로 탈퇴 하시겠습니까?
                     </b>
 
-                    <form action="" method="post">
-                        비밀번호 : 
+                    <form action="delete.me" method="post">
+                        	비밀번호 : 
                         <input type="password" name="userPwd" required>
 
                         <button type="submit" class="btn btn-danger">탈퇴하기</button>
