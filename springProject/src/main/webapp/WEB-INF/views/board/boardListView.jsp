@@ -40,8 +40,10 @@
             <h2>게시판</h2>
             <br>
             <!-- 로그인후 상태일 경우만 보여지는 글쓰기 버튼-->
-            <a class="btn btn-secondary" style="float:right" href="">글쓰기</a>
-            <br>
+            <c:if test="${ !empty loginUser }">
+            <a class="btn btn-secondary" style="float:right" href="enrollForm.bo">글쓰기</a>
+            </c:if>
+            <br><br>
             <table id="boardList" class="table table-hover" align="center">
                 <thead>
                   <tr>
@@ -129,6 +131,18 @@
 
     <script>
         
+    	$(function(){
+    		
+    		
+    		
+    		$("#boardList>tbody>tr").click(function(){
+    			
+    			location.href = "detail.bo?bno="+$(this).children().eq(0).text();
+    			
+    		})
+    		
+    	})
+    
     </script>
 
 

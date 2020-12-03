@@ -10,3 +10,7 @@ select
  where status = 'Y'
  order 
     by board_no desc; 
+    
+    
+ALTER TABLE BOARD modify ORIGIN_NAME VARCHAR2(200);
+commit;

@@ -34,7 +34,7 @@
 					    , board_title
 					    , board_writer
 					    , count
-					    , create_date
+					    , to_char(create_date,'YYYY-MM-DD') "create_date"
 					    , origin_name
 					 from board
 					 where status = 'Y'
@@ -43,6 +43,67 @@
 
 	  </select>
 	  
-  
-  
+	  
+	  <insert id="insertBoard" parameterType="Board">
+	  
+	  		insert 
+	  		  into board
+	  		  (
+	  		  		board_no
+				  , board_title
+				  , board_writer
+				  , board_content
+				  , origin_name
+				  , change_name
+	  		  )
+	  		  values
+	  		  (
+	  		  	  seq_bno.nextval
+	  		  	, #{boardTitle}
+	  		  	, #{boardWriter}
+	  		  	, #{boardContent}
+	  		  	, #{originName}
+	  		  	, #{changeName}
+
+	  		  )
+	  		  
+	  		  
+	  
+	  
+	  
+	  
+	  </insert>
+	  
+	  
+	  
+	  <update id="increaseCount" parameterType="_int">
+	  	
+	  	update
+	  	       board
+	  	  set count = count + 1
+	  	where status = 'Y'
+	  	  and board_no = #{bno}
+	  	     
+	  	
+	  	
+	  </update>
+  	
+  	
+  		<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
+  			
+  		select
+  		       board_no
+  		     , board_title
+  		     , board_writer
+  		     , to_char(create_date, 'YYYY-MM-DD') "create_date"  
+  		     , board_content
+  		     , origin_name
+  		     , change_name
+  	
+  	     from board
+  	     
+  	     where board_no = #{bno}	       
+  		
+  		</select>
+  	
 </mapper>
